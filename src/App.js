@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ExplorePage from './components/ExplorePage';
+import FilterCard from './components/FilterCard';
+import CardDetails from './components/CardDetails'; // Import the new component
+import ListPage from './components/ListPage';
+import AIChallenege from './components/AIChallenege';
 
 function App() {
+  const [filters, setFilters] = useState({ status: 'all', level: 'all' });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+              <ListPage/>
+              <AIChallenege/>
+                <ExplorePage setFilters={setFilters} />
+                <FilterCard filters={filters} />
+              </>
+            }
+          />
+          {/* Define the route for the card details page */}
+          <Route path="/card/:id" element={<CardDetails />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
