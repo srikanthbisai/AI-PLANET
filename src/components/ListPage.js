@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 function ListPage() {
+  const navigate = useNavigate();
+
+  const handleChallenge = () => {
+    navigate("/create-challenge")
+  }
+
     return (
       <div className="flex flex-col min-h-screen">
         <header className="w-11/12 mx-auto p-4">
@@ -26,7 +34,7 @@ function ListPage() {
               diverse datasets allowing you to foster learning through <br />
               competitions.
             </p>
-            <button className="text-black bg-white px-10 py-3 text-xl tracking-widest font-bold rounded-lg mt-10">
+            <button onClick={handleChallenge} className="text-black bg-white px-10 py-3 text-xl tracking-widest font-bold rounded-lg mt-10">
               Create Challenge
             </button>
           </div>
