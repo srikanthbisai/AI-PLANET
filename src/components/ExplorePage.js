@@ -21,23 +21,23 @@ function ExplorePage({ setFilters }) {
   };
 
   return (
-    <div className="w-full bg-[#002A3B] p-10 flex flex-col">
+    <div className="w-full bg-[#002A3B] p-10 flex flex-col justify-center">
       <div className="w-full text-center">
         <h1 className="text-white text-5xl">Explore Challenges</h1>
       </div>
-      <div className="w-3/4 mx-auto space-x-10 mt-10">
+      <div className="w-3/4 flex mx-auto space-x-10 mt-10">
         <input
           type="text"
           placeholder="Search"
           className="w-3/4 mx-auto p-4 rounded-lg"
         />
         {!isOpened && (
-          <button className="bg-white rounded-lg p-4 tracking-widest" onClick={handleFilter}>
+          <button className="bg-white rounded-lg px-10 text-3xl tracking-widest" onClick={handleFilter}>
             Filter
           </button>
         )}
         {isOpened && (
-          <div className="bg-white p-4 rounded-lg">
+          <div className="bg-white p-4 w-1/4 rounded-lg">
             <h2 className="text-lg font-bold">Filters</h2>
             <div className="mt-4">
               <label className="block">
