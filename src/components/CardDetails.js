@@ -1,31 +1,34 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { filterCard } from "../lib/FilterCardData";
 
 const CardDetails = ({ cards, deleteCard }) => {
-  const { id } = useParams(); // Get the ID from the URL
-  const navigate = useNavigate();
-  const card = cards.find((card) => card.id.toString() === id); // Find the card by ID
+  const { id } = useParams(); // fetching card ID from the URL
+  const navigate = useNavigate();    
+  const card = cards.find((card) => card.id.toString() === id); // Finding the card by ID
 
   if (!card) {
     return <div className="text-white">Card not found!</div>;
   }
 
   const handleEditClick = () => {
-    navigate(`/card/${id}/edit`); // Navigate to the edit form
+    navigate(`/card/${id}/edit`); // Navigating to the edit form on clicking edit button
   };
 
   const handleDeleteClick = () => {
-    deleteCard(card.id); // Call the deleteCard function
-    navigate("/"); // Optionally navigate back to the home page or filter page after deletion
+    deleteCard(card.id); // 
+    navigate("/");  //navigating to home page after deletion to view remaining cards
   };
+
+
+  const filteredCard = filterCard.find((fCard) => fCard.id.toString() === id);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      {/* Header */}
       <header className="w-full bg-white py-4 shadow">
         <div className="w-3/4 mx-auto px-4">
           <img
-            src="logo.png"
+            src="/logo.png"
             alt="Company Logo"
             className="h-12 inline-block"
           />
@@ -41,7 +44,7 @@ const CardDetails = ({ cards, deleteCard }) => {
             </div>
             <h1 className="text-4xl font-bold">{card.name}</h1>
             <p className="mt-2 text-lg">
-              Identify the class to which each butterfly belongs
+              {filteredCard ? filteredCard.description : "No description available"}
             </p>
           </div>
           <div>
@@ -55,13 +58,19 @@ const CardDetails = ({ cards, deleteCard }) => {
         <div className="w-3/4 mx-auto">
           <div className="flex space-x-4 justify-between">
             <div className="overViewContainer">
-              <h2 className=" mb-4 font-bold text-2xl">Overview</h2>
+              <h2 className="mb-4 font-bold text-2xl">Overview</h2>
             </div>
             <div className="buttonContainer space-x-4">
-              <button onClick={handleEditClick} className="bg-green-600 text-white py-2 px-6 rounded-md">
+              <button
+                onClick={handleEditClick}
+                className="bg-green-800 text-white py-2 px-8 rounded-md text-lg"
+              >
                 Edit
               </button>
-              <button onClick={handleDeleteClick} className="border border-red-500 text-red-500 py-2 px-6 rounded-md">
+              <button
+                onClick={handleDeleteClick}
+                className="border border-red-800 text-red-800 py-2 px-8 rounded-md text-lg"
+              >
                 Delete
               </button>
             </div>
@@ -69,22 +78,9 @@ const CardDetails = ({ cards, deleteCard }) => {
 
           <div className="textContainer flex-grow mt-10 w-3/4 space-y-10">
             <p className="text-gray-600 mb-4 text-2xl font-medium">
-              Butterflies are the adult flying stage of certain insects belonging
-              to an order or group called Lepidoptera. The word "Lepidoptera"
-              means "scaly wings" in Greek. This name perfectly suits the insects
-              in this group because their wings are covered with thousands of tiny
-              scales overlapping in rows.
-            </p>
-            <p className="text-gray-600 mb-4 text-2xl font-medium">
-              An agency of the Governmental Wildlife Conservation is planning to
-              implement an automated system based on computer vision so that it
-              can identify butterflies based on captured images. As a consultant
-              for this project, you are responsible for developing an efficient
-              model.
-            </p>
-            <p className="text-gray-600 mb-6 text-2xl font-medium">
-              Your task is to build an Image Classification Model using CNN that
-              classifies to which class each butterfly belongs.
+              {filteredCard ? filteredCard.longDescription.split('\n\n').map((paragraph, index) => (
+                <span key={index}>{paragraph}<br /><br /></span>
+              )) : "No detailed description available"}
             </p>
           </div>
         </div>

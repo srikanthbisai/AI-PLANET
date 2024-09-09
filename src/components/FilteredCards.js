@@ -54,7 +54,7 @@ const FilterCard = ({ filters, cards }) => {
                     {status === 'active'  ? (
                       <div className='space-y-3'>
                         <p className="text-lg font-bold">Ends in</p>
-                        <p className="text-gray-600">00   :   15  :   22</p>
+                        <p className="text-gray-600">00  :  15  :  22</p>
                         <p>Days : Hours : Min</p>
                       </div>
                     ) : (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ExplorePage from './components/ExplorePage';
-import FilterCard from './components/FilterCard';
+import FilterCard from './components/FilteredCards';
 import CardDetails from './components/CardDetails';
 import ListPage from './components/ListPage';
 import AIChallenege from './components/AIChallenege';

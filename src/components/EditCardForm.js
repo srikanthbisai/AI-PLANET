@@ -1,118 +1,180 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const EditCardForm = ({ cards, updateCards }) => {
-  const { id } = useParams(); // Get the card ID from the URL
-  const navigate = useNavigate(); // To navigate back after saving
-  const card = cards.find((c) => c.id.toString() === id); // Find the card by ID
-  
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [card, setCard] = useState(null);
   const [formData, setFormData] = useState({
-    name: card.name,
-    description: card.description,
-    startDate: card.startDate,
-    endDate: card.endDate,
-    level: card.level,
-    image: card.image,
+    name: '',
+    description: '',
+    startDate: '',
+    endDate: '',
+    level: '',
+    image: '',
   });
+  const [previewImage, setPreviewImage] = useState('');
+
+  useEffect(() => {
+    const foundCard = cards.find((c) => c.id.toString() === id);
+    if (foundCard) {
+      setCard(foundCard);
+      setFormData({
+        name: foundCard.name,
+        description: foundCard.description,
+        startDate: foundCard.startDate,
+        endDate: foundCard.endDate,
+        level: foundCard.level,
+        image: foundCard.image,
+      });
+      setPreviewImage(foundCard.image); // Set initial preview image
+    }
+  }, [id, cards]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevForm) => ({ ...prevForm, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const updatedCard = { ...card, ...formData };
-    updateCards(updatedCard); // Update the card in parent state
-    navigate('/'); // Navigate back to the main page (or card listing)
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result); // Update preview image
+        setFormData((prevForm) => ({ ...prevForm, image: reader.result })); // Update form data with new image
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (card) {
+      const updatedCard = { ...card, ...formData };
+      updateCards(updatedCard);
+      navigate('/');
+    }
+  };
+
+  if (!card) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 ">
-      <header className="w-full bg-white py-4 shadow">
-        <div className="w-3/4 mx-auto px-4">
-          <img
-            src="logo.png"
-            alt="Company Logo"
-            className="h-12 inline-block"
-          />
-        </div>
+    <div className="min-h-screen flex flex-col">
+      <header className="w-5/6 mx-auto p-4">
+        <img src="/logo.png" alt="Company Logo" />
       </header>
-      
-      <div className="w-3/4 mx-auto mt-10">
-        <h2 className="text-3xl mb-6">Edit Card</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+
+      <div className='w-full bg-slate-200 text-2xl lg:h-[100px] flex items-center'>
+        <div className='w-5/6 mx-auto font-bold tracking-wide'>
+          Challenge Details
+        </div> 
+      </div>
+
+      <div className="w-5/6 mx-auto mt-10">
+        <form onSubmit={handleSubmit} className='space-y-10 pb-10 text-lg'>
+          {/* Card Name */}
+          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
             <label>Card Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[400px] border p-2 rounded-lg"
+              required
             />
           </div>
 
-          <div className="mb-4">
-            <label>Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full border p-2"
-            />
-          </div>
-
-          <div className="mb-4">
+          {/* Start Date */}
+          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
             <label>Start Date</label>
             <input
               type="date"
               name="startDate"
               value={formData.startDate}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[400px] border p-2 rounded-lg"
+              required
             />
           </div>
 
-          <div className="mb-4">
+          {/* End Date */}
+          <div className="my-4 w-11/12 flex flex-col space-y-4">
             <label>End Date</label>
             <input
               type="date"
               name="endDate"
               value={formData.endDate}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[400px] border p-3 rounded-lg"
+              required
             />
           </div>
 
-          <div className="mb-4">
-            <label>Level</label>
+          {/* Description */}
+          <div className="my-4 w-11/12 flex flex-col space-y-4">
+            <label>Description</label>
+            <textarea
+              name="description"
+              rows={10}
+              value={formData.description}
+              onChange={handleChange}
+              className="w-[750px] border p-3 rounded-lg"
+              required
+            />
+          </div>
+
+          {/* Image Preview with Change Option */}
+          <div className="mb-4 w-11/12 flex flex-col space-y-4">
+            <label>Image</label>
+            <div className="relative w-[300px] h-auto bg-slate-200 p-4 rounded-lg">
+              <img 
+                src={previewImage || 'https://via.placeholder.com/300'} // Default image for testing
+                alt="Preview" 
+                className="w-full h-auto object-cover rounded-md"
+              />
+              <label 
+                htmlFor="imageUpload"
+                className="text-green-600 cursor-pointer flex items-center space-x-2 mt-2"
+              >
+                <span className="text-white ">
+                  <img src="/imageUpload.png" alt="Edit" className="w-4 h-4" />
+                </span>
+                <span>Change image</span>
+              </label>
+              <input 
+                id="imageUpload"
+                type="file" 
+                accept="image/*" 
+                onChange={handleImageUpload} 
+                className="hidden"
+              />
+            </div>
+          </div>
+
+          {/* Level */}
+          <div className="my-4 w-11/12 flex flex-col space-y-4">
+            <label>Level Type</label>
             <select
               name="level"
               value={formData.level}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[200px] border p-4 rounded-lg"
+              required
             >
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
             </select>
           </div>
 
-          <div className="mb-4">
-            <label>Image URL</label>
-            <input
-              type="text"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              className="w-full border p-2"
-            />
-          </div>
-
+          {/* Submit Button */}
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-green-800 hover:bg-orange-800 text-white font-bold py-2 space-y-4 px-4 rounded-lg"
           >
             Save Changes
           </button>
