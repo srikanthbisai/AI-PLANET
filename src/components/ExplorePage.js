@@ -1,34 +1,41 @@
-import React, { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 function ExplorePage({ setFilters }) {
   const [isOpened, setIsOpened] = useState(false);
-  const [localFilters, setLocalFilters] = useState({ status: [], level: [], search: '' });
+  const [localFilters, setLocalFilters] = useState({
+    status: [],
+    level: [],
+    search: "",
+  });
 
   const handleFilter = () => {
     setIsOpened(!isOpened);
   };
 
   const handleSearchChange = (e) => {
-    setLocalFilters(prevFilters => ({ ...prevFilters, search: e.target.value }));
+    setLocalFilters((prevFilters) => ({
+      ...prevFilters,
+      search: e.target.value,
+    }));
   };
 
   const handleCheckboxChange = (e, filterType) => {
     const { value, checked } = e.target;
-    setLocalFilters(prevFilters => ({
+    setLocalFilters((prevFilters) => ({
       ...prevFilters,
       [filterType]: checked
         ? [...prevFilters[filterType], value]
-        : prevFilters[filterType].filter(item => item !== value)
+        : prevFilters[filterType].filter((item) => item !== value),
     }));
   };
 
   const applyFilters = () => {
     // Convert the status and level arrays to 'all' if empty
     const updatedFilters = {
-      status: localFilters.status.length ? localFilters.status : ['all'],
-      level: localFilters.level.length ? localFilters.level : ['all'],
-      search: localFilters.search
+      status: localFilters.status.length ? localFilters.status : ["all"],
+      level: localFilters.level.length ? localFilters.level : ["all"],
+      search: localFilters.search,
     };
     setFilters(updatedFilters);
     setIsOpened(false);
@@ -57,83 +64,102 @@ function ExplorePage({ setFilters }) {
         </div>
         {!isOpened && (
           <button
-            className="bg-white rounded-lg px-10 py-4 w-[200px]"
+            className="bg-white rounded-lg font-bold text-2xl font-serif px-10 py-4 w-[200px]"
             onClick={handleFilter}
           >
-            Filter
+            Filter V
           </button>
         )}
         {isOpened && (
-          <div className="absolute top-0 right-0 bg-white p-4 w-[350px] rounded-lg z-50 shadow-lg">
-            <h2 className="text-lg font-bold">Filters</h2>
+          <div className="absolute top-0 right-0 bg-white p-4 font-serif w-[350px] rounded-lg z-50 shadow-lg">
+            <h2 className="text-2xl font-bold w-full">Filters</h2>
+            <div
+              className="bg-gray-100"
+              style={{
+                width: "300px",
+                height: "2px",
+                transform: "rotate(0deg)",
+                marginTop: "25px",
+              }}
+            ></div>
             <div className="mt-4">
               <h3 className="font-semibold">Status</h3>
               <div className="mt-2">
-                <label className="block">
+                <label className="block space-x-2">
                   <input
                     type="checkbox"
                     value="active"
-                    onChange={(e) => handleCheckboxChange(e, 'status')}
-                    checked={localFilters.status.includes('active')}
+                    onChange={(e) => handleCheckboxChange(e, "status")}
+                    checked={localFilters.status.includes("active")}
                   />
-                  Active
+                  <span>Active</span>
                 </label>
-                <label className="block">
+                <label className="block space-x-2">
                   <input
                     type="checkbox"
                     value="upcoming"
-                    onChange={(e) => handleCheckboxChange(e, 'status')}
-                    checked={localFilters.status.includes('upcoming')}
+                    onChange={(e) => handleCheckboxChange(e, "status")}
+                    checked={localFilters.status.includes("upcoming")}
                   />
-                  Upcoming
+                  <span>Upcoming</span>
                 </label>
-                <label className="block">
+                <label className="block space-x-2">
                   <input
                     type="checkbox"
                     value="completed"
-                    onChange={(e) => handleCheckboxChange(e, 'status')}
-                    checked={localFilters.status.includes('completed')}
+                    onChange={(e) => handleCheckboxChange(e, "status")}
+                    checked={localFilters.status.includes("completed")}
                   />
-                  Completed
+                  <span>Completed</span>
                 </label>
               </div>
             </div>
 
+            <div
+              className="bg-gray-100"
+              style={{
+                width: "300px",
+                height: "2px",
+                transform: "rotate(0deg)",
+                marginTop: "25px",
+              }}
+            ></div>
             <div className="mt-4">
               <h3 className="font-semibold">Level</h3>
-              <div className="mt-2">
-                <label className="block">
+
+              <div className="mt-2 space">
+                <label className="block space-x-2">
                   <input
                     type="checkbox"
                     value="Beginner"
-                    onChange={(e) => handleCheckboxChange(e, 'level')}
-                    checked={localFilters.level.includes('Beginner')}
+                    onChange={(e) => handleCheckboxChange(e, "level")}
+                    checked={localFilters.level.includes("Beginner")}
                   />
-                  Beginner
+                  <span>Beginner</span>
                 </label>
-                <label className="block">
+                <label className="block space-x-2">
                   <input
                     type="checkbox"
                     value="Intermediate"
-                    onChange={(e) => handleCheckboxChange(e, 'level')}
-                    checked={localFilters.level.includes('Intermediate')}
+                    onChange={(e) => handleCheckboxChange(e, "level")}
+                    checked={localFilters.level.includes("Intermediate")}
                   />
-                  Intermediate
+                  <span>Intermediate</span>
                 </label>
-                <label className="block">
+                <label className="block space-x-2">
                   <input
                     type="checkbox"
                     value="Advanced"
-                    onChange={(e) => handleCheckboxChange(e, 'level')}
-                    checked={localFilters.level.includes('Advanced')}
+                    onChange={(e) => handleCheckboxChange(e, "level")}
+                    checked={localFilters.level.includes("Advanced")}
                   />
-                  Advanced
+                  <span>Advanced</span>
                 </label>
               </div>
             </div>
 
             <button
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full mt-4"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mt-4"
               onClick={applyFilters}
             >
               Apply Filters

@@ -12,24 +12,24 @@ const debounce = (func, delay) => {
 
 // Function to calculate remaining time
 const getRemainingTime = (startDate, endDate, status) => {
-  let total;
-  
+  const now = new Date().getTime();
+  let total = 0;
+
   if (status === 'upcoming') {
-    total = Date.parse(startDate) - Date.parse(new Date());
+    total = new Date(startDate).getTime() - now; // Time until it starts
   } else if (status === 'active') {
-    total = Date.parse(endDate) - Date.parse(new Date());
-  } else {
-    total = 0;
+    total = new Date(endDate).getTime() - now; // Time until it ends
   }
 
-  total = Math.max(total, 0);  // Ensure no negative time
+  if (total < 0) {
+    total = 0; // Timer stops at 0 when an event has started or ended
+  }
 
   const days = Math.floor(total / (1000 * 60 * 60 * 24));
   const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((total / 1000 / 60) % 60);
-  const seconds = Math.floor((total / 1000) % 60);
 
-  return { total, days, hours, minutes, seconds };
+  return { total, days, hours, minutes };
 };
 
 const FilterCard = ({ filters, cards }) => {
@@ -54,6 +54,7 @@ const FilterCard = ({ filters, cards }) => {
       const updatedTimes = {};
 
       cards.forEach((card) => {
+        // Calculate remaining time for each card
         const time = getRemainingTime(card.startDate, card.endDate, card.status);
         updatedTimes[card.id] = time;
       });
@@ -77,12 +78,12 @@ const FilterCard = ({ filters, cards }) => {
 
   return (
     <div className="min-h-screen bg-[#003145] pt-10">
-      <div className="w-3/4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+      <div className="w-3/4 mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
         {filteredCards.length > 0 ? (
           filteredCards.map((card, index) => {
             const status = card.status || 'unknown';
             const name = card.name || 'Unnamed Challenge';
-            const time = timeLeft[card.id] || { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            const time = timeLeft[card.id] || { days: 0, hours: 0, minutes: 0 };
 
             return (
               <div
@@ -92,32 +93,60 @@ const FilterCard = ({ filters, cards }) => {
               >
                 <img src={card.image} alt={name} className="w-full h-40 object-cover" />
                 <div className="p-4 flex flex-col items-center text-center">
-                  <span className={`inline-block px-3 py-1 text-sm font-semibold ${status === 'active' ? 'bg-green-100 text-green-800' : status === 'upcoming' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'} rounded-full mb-2`}>
+                  <span className={`inline-block px-3 py-1 text-sm font-semibold ${status === 'active' ? 'bg-green-100 text-green-800' : status === 'upcoming' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'} rounded-lg mb-2`}>
                     {status.charAt(0).toUpperCase() + status.slice(1)}
                   </span>
-                  <h1 className="text-xl font-semibold mb-2">{name}</h1>
+                  <h1 className="text-lg w-4/5 font-semibold mb-2">{name}</h1>
                   {status !== 'completed' ? (
-                    <div className="mt-4 text-center p-4">
+                    <div className="mt-4 text-center">
                       {status === 'upcoming' ? (
                         <div className='space-y-3'>
                           <p className="text-sm text-gray-600">Starts in:</p>
-                          <p className="text-lg font-semibold text-gray-800">
-                            {time.days}d {time.hours}h {time.minutes}m {time.seconds}s
-                          </p>
+                          {/* Timer */}
+                          <div className="flex justify-center space-x-2 text-lg font-semibold text-gray-800">
+                            <div>{String(time.days).padStart(2, '0')}</div>
+                            <div>:</div>
+                            <div>{String(time.hours).padStart(2, '0')}</div>
+                            <div>:</div>
+                            <div>{String(time.minutes).padStart(2, '0')}</div>
+                          </div>
+                          {/* Timer Labels */}
+                          <div className="flex justify-center space-x-3 text-sm font-medium text-gray-600">
+                            <div>Days</div>
+                            <div>Hours</div>
+                            <div>Mins</div>
+                          </div>
                         </div>
                       ) : status === 'active' ? (
                         <div className='space-y-3'>
                           <p className="text-sm text-gray-600">Ends in:</p>
-                          <p className="text-lg font-semibold text-gray-800">
-                            {time.days}d {time.hours}h {time.minutes}m {time.seconds}s
-                          </p>
+                          {/* Timer */}
+                          <div className="flex justify-center space-x-2 text-lg font-semibold text-gray-800">
+                            <div>{String(time.days).padStart(2, '0')}</div>
+                            <div>:</div>
+                            <div>{String(time.hours).padStart(2, '0')}</div>
+                            <div>:</div>
+                            <div>{String(time.minutes).padStart(2, '0')}</div>
+                          </div>
+                          {/* Timer Labels */}
+                          <div className="flex justify-center space-x-3 text-sm font-medium text-gray-600">
+                            <div>Days</div>
+                            <div>Hours</div>
+                            <div>Mins</div>
+                          </div>
                         </div>
                       ) : null}
+                      <button className="bg-green-500 text-white mt-4 px-6 py-2 rounded-lg font-semibold hover:bg-green-600">
+                        Participate Now
+                      </button>
                     </div>
                   ) : (
-                    <div className="mt-4 text-center p-4">
+                    <div className="mt-4 text-center">
                       <p className="text-sm text-gray-600">Ended on:</p>
                       <p className="text-lg font-semibold text-gray-800">{card.endDate}</p>
+                      <button className="bg-green-500 text-white mt-4 px-6 py-2 rounded-lg font-semibold hover:bg-green-600">
+                        Participate Now
+                      </button>
                     </div>
                   )}
                 </div>

@@ -2,8 +2,8 @@ export const filterCard = [
   {
     id: 1,
     name: "Data Science Bootcamp - Graded Datathon",
-    startDate: "2024-01-01",
-    endDate: "2024-06-30",
+    startDate: "2024-09-15",
+    endDate: "2024-12-30",
     status: "upcoming",
     description: "A comprehensive bootcamp on data science and machine learning.",
     longDescription:
@@ -14,8 +14,8 @@ export const filterCard = [
   {
     id: 2,
     name: "Data Sprint 72 - Butterfly Identification",
-    startDate: "2023-10-01",
-    endDate: "2024-03-30",
+    startDate: "2024-09-20",
+    endDate: "2025-01-30",
     status: "upcoming",
     description: "A datathon focused on identifying butterfly species.",
     longDescription:
@@ -26,8 +26,8 @@ export const filterCard = [
   {
     id: 3,
     name: "Data Sprint 71 - Weather Recognition",
-    startDate: "2023-09-15",
-    endDate: "2024-02-20",
+    startDate: "2024-09-01",
+    endDate: "2024-12-15",
     status: "active",
     description: "Recognizing weather patterns using data science techniques.",
     longDescription:
@@ -38,8 +38,8 @@ export const filterCard = [
   {
     id: 4,
     name: "Data Sprint 70 - Airline Passenger Satisfaction",
-    startDate: "2024-02-10",
-    endDate: "2024-07-15",
+    startDate: "2024-08-10",
+    endDate: "2024-09-25",
     status: "active",
     description: "Analyze data to measure airline passenger satisfaction.",
     longDescription:
@@ -50,7 +50,7 @@ export const filterCard = [
   {
     id: 5,
     name: "Engineering Graduated Employment Outcomes",
-    startDate: "2024-03-05",
+    startDate: "2023-03-05",
     endDate: "16th May'22 09:00 PM",
     status: "completed",
     description: "Analyze employment outcomes for engineering graduates.",
@@ -62,7 +62,7 @@ export const filterCard = [
   {
     id: 6,
     name: "Travel Insurance Claim Prediction",
-    startDate: "2024-04-20",
+    startDate: "2023-05-01",
     endDate: "16th May'22 09:00 PM",
     status: "completed",
     description: "Predict travel insurance claims using machine learning.",
