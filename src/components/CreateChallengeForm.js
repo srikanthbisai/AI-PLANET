@@ -30,87 +30,94 @@ const CreateChallengeForm = ({ addChallenge }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 ">
-      <div className="w-3/4 mx-auto mt-10">
-        <h2 className="text-3xl mb-6">Create Challenge</h2>
+    <div className="min-h-screen flex flex-col">
+       <header className="w-5/6 mx-auto p-4">
+          <img src="logo.png" alt="Company Logo" />
+        </header>
+
+  
+      <div className="w-5/6 mx-auto mt-10">
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
             <label>Challenge Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[400px] border p-2"
               required
             />
           </div>
 
-          <div className="mb-4">
-            <label>Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full border p-2"
-              required
-            />
-          </div>
 
-          <div className="mb-4">
+          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
             <label>Start Date</label>
             <input
               type="date"
               name="startDate"
               value={formData.startDate}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[400px] border p-2"
               required
             />
           </div>
 
-          <div className="mb-4">
+          <div className="my-4 w-11/12 flex flex-col space-y-4">
             <label>End Date</label>
             <input
               type="date"
               name="endDate"
               value={formData.endDate}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[400px] border p-3"
               required
             />
           </div>
 
-          <div className="mb-4">
+          <div className="my-4 w-11/12 flex flex-col space-y-4">
+            <label>Description</label>
+            <textarea
+              name="description"
+              rows={10}
+              value={formData.description}
+              onChange={handleChange}
+              className="w-[750px] border p-3"
+              required
+            />
+          </div>
+
+          <div className="my-4 w-11/12 flex flex-col space-y-4">
             <label>Level</label>
             <select
               name="level"
               value={formData.level}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[200px] border p-2"
               required
             >
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
             </select>
           </div>
 
-          <div className="mb-4">
-            <label>Image URL</label>
+          <div className="mb-4 w-11/12 flex flex-col space-y-4">
+            <label>Image</label>
             <input
               type="text"
               name="image"
+              placeholder='Upload'
               value={formData.image}
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-[200px] border p-2"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-green-500 hover:bg-green-800 text-white font-bold py-2 space-y-4 px-4 rounded-lg"
           >
             Create Challenge
           </button>
