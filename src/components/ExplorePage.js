@@ -52,7 +52,7 @@ function ExplorePage({ setFilters }) {
       <div className="w-full text-center">
         <h1 className="text-white text-5xl">Explore Challenges</h1>
       </div>
-      <div className="w-3/4 flex mx-auto space-x-4 mt-10 relative items-center">
+      <div className="w-3/4 flex mx-auto space-x-6 mt-10 relative items-center">
         <div className="relative w-3/4">
           <input
             type="text"
