@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Debounce  function 
+// Debounce  function to optimise the call 
 const debounce = (func, delay) => {
   let timeoutId;
   return (...args) => {
@@ -22,7 +22,7 @@ const getRemainingTime = (startDate, endDate, status) => {
   }
 
   if (total < 0) {
-    total = 0; // Timer stops at 0 when an event has started or ended
+    total = 0; // timer stopping at 0
   }
 
   const days = Math.floor(total / (1000 * 60 * 60 * 24));
@@ -49,20 +49,20 @@ const FilterCard = ({ filters, cards }) => {
   }, [filters.search, debouncedSearchHandler]);
 
   useEffect(() => {
-    // Update the timer every second
+    // Updateing the timer every second
     const interval = setInterval(() => {
       const updatedTimes = {};
 
       cards.forEach((card) => {
-        // Calculate remaining time for each card
+        // Calculating the remaining time for each card
         const time = getRemainingTime(card.startDate, card.endDate, card.status);
         updatedTimes[card.id] = time;
       });
 
-      setTimeLeft(updatedTimes); // Update the entire timeLeft state with the new times
+      setTimeLeft(updatedTimes); // Updating the entire timeLeft state with the new times
     }, 1000);
 
-    return () => clearInterval(interval); // Clear interval on component unmount
+    return () => clearInterval(interval); // Clearing interval on component unmount
   }, [cards]);
 
   const filteredCards = cards.filter((card) => {

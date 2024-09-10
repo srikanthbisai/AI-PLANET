@@ -7,7 +7,7 @@ import ListPage from './components/ListPage';
 import AIChallenege from './components/AIChallenege';
 import EditCardForm from './components/EditCardForm';
 import CreateChallengeForm from './components/CreateChallengeForm';
-import { filterCard } from './lib/filterCardData'; // This import seems not to be necessary, adjust as needed
+import { filterCard } from './lib/filterCardData'; 
 
 
 function App() {
@@ -20,11 +20,11 @@ function App() {
   };
 
   const addChallenge = (newChallenge) => {
-    setCards((prevCards) => [...prevCards, newChallenge]); // Add new challenge to the cards array
+    setCards((prevCards) => [...prevCards, newChallenge]); // Adding new challenge to the cards array
   };
 
   const deleteCard = (id) => {
-    setCards((prevCards) => prevCards.filter((card) => card.id !== id)); // Remove card with the specified ID
+    setCards((prevCards) => prevCards.filter((card) => card.id !== id)); // Removing card with the specified ID
   };
 
   return (
