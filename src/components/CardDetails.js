@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { filterCard } from "../lib/FilterCardData";
+import { filterCard } from "../lib/FilterCardData"; 
+
+
 
 const CardDetails = ({ cards, deleteCard }) => {
-  const { id } = useParams(); // fetching card ID from the URL
-  const navigate = useNavigate();    
-  const card = cards.find((card) => card.id.toString() === id); // Finding the card by ID
+  const { id } = useParams(); // Fetching card ID from the URL
+  const navigate = useNavigate();
+  const card = cards.find((card) => card.id.toString() === id); // Finding the card by ID 
 
   if (!card) {
     return <div className="text-white">Card not found!</div>;
@@ -16,12 +18,45 @@ const CardDetails = ({ cards, deleteCard }) => {
   };
 
   const handleDeleteClick = () => {
-    deleteCard(card.id); // 
-    navigate("/");  //navigating to home page after deletion to view remaining cards
+    deleteCard(card.id); 
+    navigate("/");  // Navigating to home page after deletion to view remaining cards
   };
 
-
   const filteredCard = filterCard.find((fCard) => fCard.id.toString() === id);
+
+  // Dynamic rendering of start and end dates
+  const formattedStartDate = new Date(card.startDate).toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZoneName: 'short',
+  });
+
+  const formattedEndDate = new Date(card.endDate).toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZoneName: 'short',
+  });
+
+  // Conditional check for dynamic message based on status
+  const getStatusMessage = () => {
+    const isValidDate = (date) => !isNaN(new Date(date).getTime());
+  
+    if (card.status === 'upcoming') {
+      return `Starts on ${formattedStartDate}`;
+    } else if (card.status === 'active') {
+      return `Ends on ${isValidDate(card.endDate) ? formattedEndDate : 'Invalid Date'}`;
+    } else if (card.status === 'completed') {
+      return `Ended on ${isValidDate(card.endDate) ? formattedEndDate : 'Invalid Date'}`;
+    }
+    return '';
+  };
+  
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
@@ -36,29 +71,32 @@ const CardDetails = ({ cards, deleteCard }) => {
       </header>
 
       {/* Main Section */}
-      <div className="bg-[#003145] py-6 text-white flex-grow flex flex-col">
-        <div className="w-3/4 mx-auto flex-grow flex flex-col justify-between">
-          <div className="flex flex-col space-y-10">
-            <div className="bg-yellow-500 text-black py-2 px-6 rounded-md mt-10 w-1/3 justify-center">
-              <p>Starts on 17th Jun'22 09:00 PM (India Standard Time)</p>
-            </div>
-            <h1 className="text-4xl font-bold">{card.name}</h1>
-            <p className="mt-2 text-lg">
-              {filteredCard ? filteredCard.description : "No description available"}
-            </p>
+      <div className="bg-[#003145] py-12 px-10 text-white flex-grow flex flex-col justify-center">
+        <div className="w-3/4 mx-auto space-y-8">
+          <div className="bg-[#FFCE5C] text-black py-2 px-6 rounded-md flex items-center w-1/2 space-x-4">
+            <img src="/timer.png" alt="" />
+            <p>{getStatusMessage()} (India Standard Time)</p>
           </div>
-          <div>
-            <button className="bg-white text-black p-3">{card.level}</button>
-          </div>
+
+          <h1 className="text-4xl font-bold">{card.name}</h1>
+          <p className="mt-2 text-lg">
+            {filteredCard ? filteredCard.description : "No description available"}
+          </p>
+          <button className="bg-white text-black py-2 px-6 rounded-md flex items-center justify-center space-x-3">
+          <img src="/skill.svg" alt="" />
+            <span>{card.level}</span>
+          </button>
         </div>
       </div>
 
       {/* Overview Section */}
       <div className="bg-white py-8">
         <div className="w-3/4 mx-auto">
-          <div className="flex space-x-4 justify-between">
+          <div className="flex justify-between items-center">
             <div className="overViewContainer">
-              <h2 className="mb-4 font-bold text-2xl">Overview</h2>
+              <h2 className="mb-4 font-bold text-2xl border-b-4 border-green-600 inline-block">
+                Overview
+              </h2>
             </div>
             <div className="buttonContainer space-x-4">
               <button
@@ -76,8 +114,8 @@ const CardDetails = ({ cards, deleteCard }) => {
             </div>
           </div>
 
-          <div className="textContainer flex-grow mt-10 w-3/4 space-y-10">
-            <p className="text-gray-600 mb-4 text-2xl font-medium">
+          <div className="textContainer mt-10 space-y-6">
+            <p className="text-gray-600 text-xl leading-relaxed">
               {filteredCard ? filteredCard.longDescription.split('\n\n').map((paragraph, index) => (
                 <span key={index}>{paragraph}<br /><br /></span>
               )) : "No detailed description available"}

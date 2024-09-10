@@ -46,12 +46,12 @@ const CreateChallengeForm = ({ addChallenge }) => {
       </header>
 
       <div className='w-full bg-slate-200 text-2xl lg:h-[100px] flex items-center'>
-        <div className='w-5/6 mx-auto font-bold tracking-wide'>
+        <div className='w-5/6 mx-auto font-bold tracking-wide '>
           Challenge Details
         </div>
       </div>
 
-      <div className="w-5/6 mx-auto mt-10">
+      <div className="w-5/6 mx-auto mt-10 rounded-lg">
         <form onSubmit={handleSubmit} className='space-y-10 mb-10'>
           <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
             <label>Challenge Name</label>
@@ -60,31 +60,31 @@ const CreateChallengeForm = ({ addChallenge }) => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-[400px] border p-2"
+              className="w-[400px] border p-2 rouned-lg"
               required
             />
           </div>
 
-          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
+          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2 ">
             <label>Start Date</label>
             <input
               type="date"
               name="startDate"
               value={formData.startDate}
               onChange={handleChange}
-              className="w-[400px] border p-2"
+              className="w-[400px] border p-2 rounded-lg"
               required
             />
           </div>
 
-          <div className="my-4 w-11/12 flex flex-col space-y-4">
+          <div className="my-4 w-11/12 flex flex-col space-y-4 rounded-lg">
             <label>End Date</label>
             <input
               type="date"
               name="endDate"
               value={formData.endDate}
               onChange={handleChange}
-              className="w-[400px] border p-3"
+              className="w-[400px] border p-2 rounded-lg"
               required
             />
           </div>
@@ -96,7 +96,7 @@ const CreateChallengeForm = ({ addChallenge }) => {
               rows={10}
               value={formData.description}
               onChange={handleChange}
-              className="w-[750px] border p-3"
+              className="w-[750px] border p-2 rounded-lg"
               required
             />
           </div>
@@ -109,12 +109,12 @@ const CreateChallengeForm = ({ addChallenge }) => {
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
-                className="hidden"
+                className="hidden rounded-lg"
               />
               <button
                 type="button"
                 onClick={() => document.getElementById('imageUpload').click()}
-                className="flex items-center space-x-2 text-black  rounded-lg"
+                className="flex items-center space-x-2 text-black rounded-lg"
               >
                 <span>Upload Image</span>
                 <img src="upload.svg" alt="Upload" className="w-6 h-6" />
@@ -128,7 +128,7 @@ const CreateChallengeForm = ({ addChallenge }) => {
               name="level"
               value={formData.level}
               onChange={handleChange}
-              className="w-[200px] border p-3"
+              className="w-[200px] border p-3 rounded-lg"
               required
             >
               <option value="Easy">Easy</option>

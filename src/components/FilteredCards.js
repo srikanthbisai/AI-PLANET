@@ -136,16 +136,18 @@ const FilterCard = ({ filters, cards }) => {
                           </div>
                         </div>
                       ) : null}
-                      <button className="bg-green-500 text-white mt-4 px-6 py-2 rounded-lg font-semibold hover:bg-green-600">
-                        Participate Now
+                      <button className="bg-green-800 text-white mt-4 px-6 py-2 rounded-lg font-semibold hover:bg-green-600  flex items-center space-x-4">
+                        <img src='circletick.png' alt='' />
+                        <h1>Participate Now</h1>
                       </button>
                     </div>
                   ) : (
-                    <div className="mt-4 text-center">
+                    <div className="mt-4 text-center space-y-6">
                       <p className="text-sm text-gray-600">Ended on:</p>
                       <p className="text-lg font-semibold text-gray-800">{card.endDate}</p>
-                      <button className="bg-green-500 text-white mt-4 px-6 py-2 rounded-lg font-semibold hover:bg-green-600">
-                        Participate Now
+                      <button className="bg-green-800 text-white mt-4 px-6 py-2 rounded-lg font-semibold hover:bg-green-600  flex items-center space-x-4">
+                        <img src='circletick.png' alt='' />
+                        <h1>Participate Now</h1>
                       </button>
                     </div>
                   )}
