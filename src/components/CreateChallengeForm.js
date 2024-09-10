@@ -31,12 +31,12 @@ const CreateChallengeForm = ({ addChallenge }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newChallenge = {
-      id: Date.now(), // Simple way to generate a unique ID
+      id: Date.now(), //   generating a unique ID
       ...formData,
       status: 'upcoming', // Default status
     };
     addChallenge(newChallenge);
-    navigate('/'); // Navigate back to the main page
+    navigate('/'); // Navigating back to the main page upon successful additon of New challenge
   };
 
   return (
@@ -53,14 +53,14 @@ const CreateChallengeForm = ({ addChallenge }) => {
 
       <div className="w-5/6 mx-auto mt-10 rounded-lg">
         <form onSubmit={handleSubmit} className='space-y-10 mb-10'>
-          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
+          <div className="mb-4  w-11/12 flex flex-col space-y-4 mt-2">
             <label>Challenge Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-[400px] border p-2 rouned-lg"
+              className="w-[400px] border p-2 border-gray-500"
               required
             />
           </div>
@@ -72,7 +72,7 @@ const CreateChallengeForm = ({ addChallenge }) => {
               name="startDate"
               value={formData.startDate}
               onChange={handleChange}
-              className="w-[400px] border p-2 rounded-lg"
+              className="w-[400px] border p-2 rounded-lg border-gray-500"
               required
             />
           </div>
@@ -84,7 +84,7 @@ const CreateChallengeForm = ({ addChallenge }) => {
               name="endDate"
               value={formData.endDate}
               onChange={handleChange}
-              className="w-[400px] border p-2 rounded-lg"
+              className="w-[400px] border p-2 rounded-lg border-gray-500"
               required
             />
           </div>
@@ -96,7 +96,7 @@ const CreateChallengeForm = ({ addChallenge }) => {
               rows={10}
               value={formData.description}
               onChange={handleChange}
-              className="w-[750px] border p-2 rounded-lg"
+              className="w-[750px] border p-2 rounded-lg border-gray-500"
               required
             />
           </div>
@@ -128,7 +128,7 @@ const CreateChallengeForm = ({ addChallenge }) => {
               name="level"
               value={formData.level}
               onChange={handleChange}
-              className="w-[200px] border p-3 rounded-lg"
+              className="w-[200px] border p-3 rounded-lg border-gray-500"
               required
             >
               <option value="Easy">Easy</option>

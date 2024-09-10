@@ -88,20 +88,20 @@ const EditCardForm = ({ cards, updateCards }) => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-[400px] border p-2 rounded-lg"
+              className="w-[400px] border p-2 border-gray-500 rounded-lg"
               required
             />
           </div>
 
           {/* Start Date */}
-          <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
+          <div className="mb-4 w-11/12 flex flex-col border-gray-500 space-y-4 mt-2">
             <label>Start Date</label>
             <input
               type="date"
               name="startDate"
               value={formData.startDate}
               onChange={handleChange}
-              className="w-[400px] border p-2 rounded-lg"
+              className="w-[400px] border p-2 border-gray-500 rounded-lg"
               required
             />
           </div>
@@ -114,7 +114,7 @@ const EditCardForm = ({ cards, updateCards }) => {
               name="endDate"
               value={formData.endDate}
               onChange={handleChange}
-              className="w-[400px] border p-3 rounded-lg"
+              className="w-[400px] border p-3 border-gray-500 rounded-lg"
               required
             />
           </div>
@@ -127,7 +127,7 @@ const EditCardForm = ({ cards, updateCards }) => {
               rows={10}
               value={formData.description}
               onChange={handleChange}
-              className="w-[750px] border p-3 rounded-lg"
+              className="w-[750px] border border-gray-500 p-3 rounded-lg"
               required
             />
           </div>
@@ -167,7 +167,7 @@ const EditCardForm = ({ cards, updateCards }) => {
               name="level"
               value={formData.level}
               onChange={handleChange}
-              className="w-[200px] border p-4 rounded-lg"
+              className="w-[200px] border p-4 rounded-lg border-gray-500"
               required
             >
               <option value="Easy">Easy</option>

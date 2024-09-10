@@ -68,9 +68,9 @@ const CardDetails = ({ cards, deleteCard }) => {
       </header>
 
       {/* Main Section */}
-      <div className="bg-[#003145] py-12 px-10 text-white flex-grow flex flex-col justify-center">
+      <div className="bg-[#003145] py-12 text-white flex-grow flex flex-col justify-center">
         <div className="w-3/4 mx-auto space-y-8">
-          <div className="bg-[#FFCE5C] text-black py-2 px-4 rounded-md flex items-center space-x-4 inline-block">
+          <div className="bg-[#FFCE5C] text-black py-2 px-4 rounded-md flex items-center max-w-max space-x-3">
             <img src="/timer.png" alt="" />
             <p>{getStatusMessage()} (India Standard Time)</p>
           </div>
@@ -87,11 +87,11 @@ const CardDetails = ({ cards, deleteCard }) => {
       </div>
 
       {/* Overview Section */}
-      <div className="bg-white py-8">
-        <div className="w-3/4 mx-auto">
-          <div className="flex justify-between items-center">
-            <div className="overViewContainer">
-              <h2 className="mb-4 font-bold text-2xl border-b-4 border-green-600 inline-block">
+      <div className="bg-white py-8 ">
+        <div className="w-3/4 mx-auto ">
+          <div className="flex justify-between items-center ">
+            <div className="overViewContainer border-b-4 border-green-600">
+              <h2 className="mb-4 font-bold text-2xl  inline-block">
                 Overview
               </h2>
             </div>
