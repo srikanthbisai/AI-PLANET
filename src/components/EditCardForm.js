@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 const EditCardForm = ({ cards, updateCards }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  
   const [card, setCard] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -15,6 +16,7 @@ const EditCardForm = ({ cards, updateCards }) => {
   });
   const [previewImage, setPreviewImage] = useState('');
 
+  // Fetch card data based on ID and populate form
   useEffect(() => {
     const foundCard = cards.find((c) => c.id.toString() === id);
     if (foundCard) {
@@ -31,11 +33,13 @@ const EditCardForm = ({ cards, updateCards }) => {
     }
   }, [id, cards]);
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevForm) => ({ ...prevForm, [name]: value }));
   };
 
+  // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -48,12 +52,13 @@ const EditCardForm = ({ cards, updateCards }) => {
     }
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (card) {
-      const updatedCard = { ...card, ...formData };
-      updateCards(updatedCard);
-      navigate('/');
+      const updatedCard = { ...card, ...formData }; // Merge updated form data into card object
+      updateCards(updatedCard); // Pass updated card to update function
+      navigate('/'); // Navigate to home page after updating
     }
   };
 
@@ -67,14 +72,14 @@ const EditCardForm = ({ cards, updateCards }) => {
         <img src="/logo.png" alt="Company Logo" />
       </header>
 
-      <div className='w-full bg-slate-200 text-2xl lg:h-[100px] flex items-center'>
-        <div className='w-5/6 mx-auto font-bold tracking-wide'>
+      <div className="w-full bg-slate-200 text-2xl lg:h-[100px] flex items-center">
+        <div className="w-5/6 mx-auto font-bold tracking-wide">
           Challenge Details
         </div> 
       </div>
 
       <div className="w-5/6 mx-auto mt-10">
-        <form onSubmit={handleSubmit} className='space-y-10 pb-10 text-lg'>
+        <form onSubmit={handleSubmit} className="space-y-10 pb-10 text-lg">
           {/* Card Name */}
           <div className="mb-4 w-11/12 flex flex-col space-y-4 mt-2">
             <label>Card Name</label>
@@ -140,7 +145,7 @@ const EditCardForm = ({ cards, updateCards }) => {
                 htmlFor="imageUpload"
                 className="text-green-600 cursor-pointer flex items-center space-x-2 mt-2"
               >
-                <span className="text-white ">
+                <span className="text-white">
                   <img src="/imageUpload.png" alt="Edit" className="w-4 h-4" />
                 </span>
                 <span>Change image</span>
