@@ -7,7 +7,7 @@ import ListPage from './components/ListPage';
 import AIChallenege from './components/AIChallenege';
 import EditCardForm from './components/EditCardForm';
 import CreateChallengeForm from './components/CreateChallengeForm';
-import { filterCard } from './lib/FilterCardData'; // This import seems not to be necessary, adjust as needed
+import { filterCard } from './lib/filterCardData'; // This import seems not to be necessary, adjust as needed
 
 
 function App() {

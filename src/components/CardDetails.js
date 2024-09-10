@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { filterCard } from "../lib/FilterCardData"; 
+import { filterCard } from "../lib/filterCardData"; 
 
 const CardDetails = ({ cards, deleteCard }) => {
   const { id } = useParams(); // Fetching card ID from the URL
