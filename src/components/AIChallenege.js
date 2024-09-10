@@ -29,12 +29,12 @@ const aiChallengeCard = [
 
 function AIChallenege() {
   return (
-    <div className="min-h-screen flex flex-col mt-20 items-center">
-      <h1 className="text-5xl font-bold">
+    <div className="min-h-screen flex flex-col mt-20 items-center ">
+      <h1 className=" sm:text-4xl lg:text-5xl font-bold">
         Why Participate in{" "}
         <span className="text-green-600">AI Challenges?</span>
       </h1>
-      <div className="w-3/4 mx-auto grid grid-cols-2 gap-6 mt-20">
+      <div className="lg:w-3/4 mx-auto grid grid-cols-2 gap-6 mt-20">
         {aiChallengeCard.map((card, index) => (
           <div
             key={index}

@@ -4,12 +4,12 @@ function ListPage() {
   const navigate = useNavigate();
 
   const handleChallenge = () => {
-    navigate("/create-challenge");
+    navigate("/create-challenge");  //navigating to create-challenge form
   };
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="w-11/12 mx-auto p-4">
+      <header className="lg:w-11/12 mx-auto md:p-4">
         <img src="logo.png" alt="Company Logo" />
       </header>
 
@@ -22,13 +22,13 @@ function ListPage() {
         </div>
 
         <div className="w-3/5 mt-20">
-          <h1 className="text-7xl text-white font-bold">
+          <h1 className=" sm:text-4xl lg:text-7xl text-white font-bold">
             Accelerate Innovation
           </h1>
-          <h1 className="text-7xl text-white mt-3 font-bold">
+          <h1 className="sm:text-4xl lg:text-7xl text-white mt-3 font-bold">
             with Global AI Challenges
           </h1>
-          <p className="text-white mt-10 text-3xl">
+          <p className="text-white mt-10 sm:text-md lg:text-3xl">
             AI Challenges at DPhi simulate real-world problems. It is a <br />
             great place to put your AI/Data Science skills to test on <br />
             diverse datasets allowing you to foster learning through <br />
@@ -42,11 +42,11 @@ function ListPage() {
           </button>
         </div>
 
-        <div className="">
+        <div className="hidden lg:flex">
           <img
             src="rocket.svg"
             alt="Decorative Illustration"
-            className="w-full h-full object-cover"
+            className=" w-full h-full object-cover"
           />
         </div>
       </section>
@@ -88,7 +88,7 @@ function ListPage() {
         <div className="w-1/3 flex justify-center items-center gap-5">
           <img src="aichallenge.svg" alt="" />
           <div className="textContainer">
-            <h1 className="text-3xl font-bold">100K+</h1>
+            <h1 className="text-3xl font-bold">100+</h1>
             <h1 className="text-lg font-bold">AI Challenges Hosted</h1>
           </div>
         </div>

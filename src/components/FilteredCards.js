@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Debounce utility function
+// Debounce  function 
 const debounce = (func, delay) => {
   let timeoutId;
   return (...args) => {
