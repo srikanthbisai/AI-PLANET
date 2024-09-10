@@ -53,7 +53,7 @@ export const filterCard = [
     startDate: "2023-03-05",
     endDate: "16th May'22 09:00 PM",
     status: "completed",
-    description: "Analyze employment outcomes for engineering graduates.",
+    description: "Analyze employment outcomes for all the engineering graduates.",
     longDescription:
       "This project focuses on analyzing employment outcomes for engineering graduates across different sectors and geographical regions. Participants will work with a dataset that tracks the career trajectories of recent engineering graduates, including factors like industry placement, salary, job satisfaction, and career growth.\n\nThe primary goal is to develop predictive models that can identify trends in graduate employment outcomes, including which factors most influence job placement and long-term success. Participants will need to preprocess the dataset, handle missing values, and perform exploratory data analysis to uncover patterns and insights.\n\nBy the end of the project, participants will have gained valuable experience in workforce analytics, which can be applied to other fields such as education policy, human resources, and labor market analysis.",
     image: "group6.png",
