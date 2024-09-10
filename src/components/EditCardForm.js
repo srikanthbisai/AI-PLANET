@@ -16,7 +16,7 @@ const EditCardForm = ({ cards, updateCards }) => {
   });
   const [previewImage, setPreviewImage] = useState('');
 
-  // Fetch card data based on ID and populate form
+  // Fetching card data based on ID and populating form
   useEffect(() => {
     const foundCard = cards.find((c) => c.id.toString() === id);
     if (foundCard) {
@@ -127,7 +127,7 @@ const EditCardForm = ({ cards, updateCards }) => {
               rows={10}
               value={formData.description}
               onChange={handleChange}
-              className="w-[750px] border border-gray-500 p-3 rounded-lg"
+              className="lg:w-[750px] border border-gray-500 p-3 rounded-lg"
               required
             />
           </div>

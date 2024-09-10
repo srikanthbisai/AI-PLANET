@@ -96,7 +96,7 @@ const CreateChallengeForm = ({ addChallenge }) => {
               rows={10}
               value={formData.description}
               onChange={handleChange}
-              className="w-[750px] border p-2 rounded-lg border-gray-500"
+              className="lg:w-[750px] border p-2 rounded-lg border-gray-500"
               required
             />
           </div>

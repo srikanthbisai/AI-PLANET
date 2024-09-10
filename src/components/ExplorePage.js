@@ -52,8 +52,8 @@ function ExplorePage({ setFilters }) {
       <div className="w-full text-center">
         <h1 className="text-white text-5xl">Explore Challenges</h1>
       </div>
-      <div className="w-3/4 flex mx-auto space-x-6 mt-10 relative items-center">
-        <div className="relative w-3/4">
+      <div className="w-3/4 flex flex-col lg:flex-row gap-6 mx-auto mt-10 relative items-center">
+        <div className="relative w-full lg:w-3/4">
           <input
             type="text"
             placeholder="Search"
@@ -70,7 +70,7 @@ function ExplorePage({ setFilters }) {
         </div>
         {!isOpened && (
           <button
-            className="bg-white rounded-lg font-bold text-2xl font-serif px-10 py-3 w-[200px] flex justify-center items-center"
+            className="bg-white rounded-lg font-bold text-2xl font-serif px-10 py-3 w-full lg:w-[200px] flex justify-center items-center"
             onClick={handleFilter}
           >
             <div className="buttonContainer flex items-center justify-center space-x-4">
@@ -80,7 +80,7 @@ function ExplorePage({ setFilters }) {
           </button>
         )}
         {isOpened && (
-          <div className="absolute top-0 right-0 bg-white p-4 font-serif w-[350px] rounded-lg z-50 shadow-lg">
+          <div className="absolute top-0 right-0 bg-white p-4 font-serif w-full lg:w-[350px] rounded-lg z-50 shadow-lg">
             <div className="buttonContainer flex items-center justify-center">
               <h2 className="text-2xl font-bold w-full">Filters</h2>
               <img src="Caretup.png" alt="" onClick={handleFilter} className="cursor-pointer" />

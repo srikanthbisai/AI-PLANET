@@ -36,7 +36,7 @@ function ListPage() {
           </p>
           <button
             onClick={handleChallenge}
-            className="text-black bg-white px-10 py-3 text-xl tracking-wide font-bold rounded-lg mt-10 text-[#003145]"
+            className="bg-white px-10 py-3 text-xl tracking-wide font-bold rounded-lg mt-10 text-[#003145]"
           >
             Create Challenge
           </button>

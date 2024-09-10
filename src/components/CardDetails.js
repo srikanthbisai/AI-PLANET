@@ -58,7 +58,7 @@ const CardDetails = ({ cards, deleteCard }) => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       <header className="w-full bg-white py-4 shadow">
-        <div className="w-3/4 mx-auto px-4">
+        <div className="lg:w-[85%]  mx-auto px-4">
           <img
             src="/logo.png"
             alt="Company Logo"
