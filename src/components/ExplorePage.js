@@ -138,34 +138,33 @@ function ExplorePage({ setFilters }) {
             ></div>
             <div className="mt-4">
               <h3 className="font-semibold">Level</h3>
-
               <div className="mt-2 space">
                 <label className="block space-x-2">
                   <input
                     type="checkbox"
-                    value="Beginner"
+                    value="Easy"
                     onChange={(e) => handleCheckboxChange(e, "level")}
-                    checked={localFilters.level.includes("Beginner")}
+                    checked={localFilters.level.includes("Easy")}
                   />
-                  <span>Beginner</span>
+                  <span>Easy</span>
                 </label>
                 <label className="block space-x-2">
                   <input
                     type="checkbox"
-                    value="Intermediate"
+                    value="Medium"
                     onChange={(e) => handleCheckboxChange(e, "level")}
-                    checked={localFilters.level.includes("Intermediate")}
+                    checked={localFilters.level.includes("Medium")}
                   />
-                  <span>Intermediate</span>
+                  <span>Medium</span>
                 </label>
                 <label className="block space-x-2">
                   <input
                     type="checkbox"
-                    value="Advanced"
+                    value="Hard"
                     onChange={(e) => handleCheckboxChange(e, "level")}
-                    checked={localFilters.level.includes("Advanced")}
+                    checked={localFilters.level.includes("Hard")}
                   />
-                  <span>Advanced</span>
+                  <span>Hard</span>
                 </label>
               </div>
             </div>
@@ -213,8 +212,6 @@ function ExplorePage({ setFilters }) {
           </div>
         ))}
         {/* Display search filter */}
-
-
         {localFilters.search && (
           <div className="flex items-center bg-gray-400 text-white px-3 py-1 rounded-full">
             <span>{localFilters.search}</span>

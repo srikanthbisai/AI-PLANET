@@ -29,11 +29,11 @@ const EditCardForm = ({ cards, updateCards }) => {
         level: foundCard.level,
         image: foundCard.image,
       });
-      setPreviewImage(foundCard.image); // Set initial preview image
+      setPreviewImage(foundCard.image); 
     }
   }, [id, cards]);
 
-  // Handle input changes
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevForm) => ({ ...prevForm, [name]: value }));
@@ -45,8 +45,8 @@ const EditCardForm = ({ cards, updateCards }) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewImage(reader.result); // Update preview image
-        setFormData((prevForm) => ({ ...prevForm, image: reader.result })); // Update form data with new image
+        setPreviewImage(reader.result); 
+        setFormData((prevForm) => ({ ...prevForm, image: reader.result })); 
       };
       reader.readAsDataURL(file);
     }
@@ -56,9 +56,9 @@ const EditCardForm = ({ cards, updateCards }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (card) {
-      const updatedCard = { ...card, ...formData }; // Merge updated form data into card object
-      updateCards(updatedCard); // Pass updated card to update function
-      navigate('/'); // Navigate to home page after updating
+      const updatedCard = { ...card, ...formData }; 
+      updateCards(updatedCard); 
+      navigate('/');
     }
   };
 
@@ -137,7 +137,7 @@ const EditCardForm = ({ cards, updateCards }) => {
             <label>Image</label>
             <div className="relative w-[300px] h-auto bg-slate-200 p-4 rounded-lg">
               <img 
-                src={previewImage || 'https://via.placeholder.com/300'} // Default image for testing
+                src={previewImage || '/group1.png'}
                 alt="Preview" 
                 className="w-full h-auto object-cover rounded-md"
               />

@@ -2,8 +2,6 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { filterCard } from "../lib/FilterCardData"; 
 
-
-
 const CardDetails = ({ cards, deleteCard }) => {
   const { id } = useParams(); // Fetching card ID from the URL
   const navigate = useNavigate();
@@ -56,7 +54,6 @@ const CardDetails = ({ cards, deleteCard }) => {
     }
     return '';
   };
-  
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
@@ -73,7 +70,7 @@ const CardDetails = ({ cards, deleteCard }) => {
       {/* Main Section */}
       <div className="bg-[#003145] py-12 px-10 text-white flex-grow flex flex-col justify-center">
         <div className="w-3/4 mx-auto space-y-8">
-          <div className="bg-[#FFCE5C] text-black py-2 px-6 rounded-md flex items-center w-1/2 space-x-4">
+          <div className="bg-[#FFCE5C] text-black py-2 px-4 rounded-md flex items-center space-x-4 inline-block">
             <img src="/timer.png" alt="" />
             <p>{getStatusMessage()} (India Standard Time)</p>
           </div>
@@ -83,7 +80,7 @@ const CardDetails = ({ cards, deleteCard }) => {
             {filteredCard ? filteredCard.description : "No description available"}
           </p>
           <button className="bg-white text-black py-2 px-6 rounded-md flex items-center justify-center space-x-3">
-          <img src="/skill.svg" alt="" />
+            <img src="/skill.svg" alt="" />
             <span>{card.level}</span>
           </button>
         </div>
