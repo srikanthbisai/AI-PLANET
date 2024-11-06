@@ -4,7 +4,7 @@ function ListPage() {
   const navigate = useNavigate();
 
   const handleChallenge = () => {
-    navigate("/create-challenge");  //navigating to create-challenge form
+    navigate("/create-challenge");  
   };
 
   return (
