@@ -38,8 +38,8 @@ export const filterCard = [
   {
     id: 4,
     name: "Data Sprint 70 - Airline Passenger Satisfaction",
-    startDate: "2024-08-10",
-    endDate: "2024-09-25",
+    startDate: "2025-01-10",
+    endDate: "2025-09-25",
     status: "active",
     description: "Analyze data to measure airline passenger satisfaction.",
     longDescription:
