@@ -2,8 +2,8 @@ export const filterCard = [
   {
     id: 1,
     name: "Data Science Bootcamp - Graded Datathon",
-    startDate: "2024-12-15",
-    endDate: "2024-12-30",
+    startDate: "2025-04-15",
+    endDate: "2025-12-30",
     status: "upcoming",
     description: "A comprehensive bootcamp on data science and machine learning.",
     longDescription:
@@ -14,8 +14,8 @@ export const filterCard = [
   {
     id: 2,
     name: "Data Sprint 72 - Butterfly Identification",
-    startDate: "2024-12-20",
-    endDate: "2025-01-30",
+    startDate: "2025-05-20",
+    endDate: "2026-01-30",
     status: "upcoming",
     description: "A datathon focused on identifying butterfly species.",
     longDescription:
@@ -27,7 +27,7 @@ export const filterCard = [
     id: 3,
     name: "Data Sprint 71 - Weather Recognition",
     startDate: "2024-09-01",
-    endDate: "2024-12-15",
+    endDate: "2025-06-15",
     status: "active",
     description: "Recognizing weather patterns using data science techniques.",
     longDescription:
